@@ -19,6 +19,12 @@ class Webcaster.View.Settings extends Backbone.View
       else
         @$(".passThrough").addClass("btn-info").removeClass "btn-cued"
 
+    @model.on "change:events", =>
+      @$("#eventslist").empty()
+      @$("#eventslist").append("<ul>")
+      _.each @model.get("events"), (event) =>
+        @$("#eventslist").append("<li>"+event+"</li>")
+      @$("#eventslist").append("</ul>")
   render: ->
     samplerate = @model.get "samplerate"
     @$(".samplerate").empty()
@@ -66,6 +72,8 @@ class Webcaster.View.Settings extends Backbone.View
     @$(".start-stream").hide()
     @$("input, select").attr disabled: "disabled"
     @$(".manual-metadata, .update-metadata").removeAttr "disabled"
+
+    @model.setEventsState()
 
     @node.startStream()
 

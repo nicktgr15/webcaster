@@ -63,7 +63,10 @@ class Webcaster.View.Microphone extends Webcaster.View.Track
     e.preventDefault()
 
     if @model.isPlaying()
+      @model.addEvent(@$("#speaker-buttons .active").val() + "-stop")
       return @model.stop()
+
+    @model.addEvent(@$("#speaker-buttons .active").val() + "-start")
 
     @$(".play-control").attr disabled: "disabled"
     @model.play()

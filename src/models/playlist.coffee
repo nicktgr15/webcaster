@@ -9,6 +9,11 @@ class Webcaster.Model.Playlist extends Webcaster.Model.Track
 
     @sink = @mixGain
 
+  addEvent: (event) ->
+    @events.events.push(@events.timeString + " " + event)
+    @events.trigger "eventsChange"
+    console.log(@events.events)
+
   setMixGain: =>
     return unless @mixGain?
 

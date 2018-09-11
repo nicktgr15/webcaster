@@ -2,6 +2,7 @@ class Webcaster.Model.Track extends Backbone.Model
   initialize: (attributes, options) ->
     @node = options.node
     @mixer = options.mixer
+    @events = options.events
 
     @mixer.on "cue", =>
       @set passThrough: false

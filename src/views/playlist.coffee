@@ -27,6 +27,11 @@ class Webcaster.View.Playlist extends Webcaster.View.Track
       @$(".volume-left").width "0%"
       @$(".volume-right").width "0%"
 
+      f = @model.get "files"
+      title = f[@model.get("fileIndex")].metadata.title
+      artist = f[@model.get("fileIndex")].metadata.artist
+      @model.addEvent(artist + " - " + title + " start")
+
       if @model.get("duration")
         @$(".progress-volume").css "cursor", "pointer"
       else
@@ -49,6 +54,7 @@ class Webcaster.View.Playlist extends Webcaster.View.Track
       @$(".track-position-text").removeClass("blink").text ""
       @$(".volume-left").width "0%"
       @$(".volume-right").width "0%"
+
 
     @model.on "change:position", =>
       return unless duration = @model.get("duration")

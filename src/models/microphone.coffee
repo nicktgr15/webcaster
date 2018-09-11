@@ -26,3 +26,9 @@ class Webcaster.Model.Microphone extends Webcaster.Model.Track
 
     @createSource =>
       @trigger "playing"
+
+
+  addEvent: (event) ->
+    @events.events.push(@events.timeString + " " + event)
+    @events.trigger "eventsChange"
+    console.log(@events.events)

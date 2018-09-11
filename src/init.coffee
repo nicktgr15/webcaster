@@ -2,6 +2,10 @@ $ ->
   Webcaster.mixer = new Webcaster.Model.Mixer
     slider: 0
 
+  Webcaster.events = new Webcaster.Model.Events({
+
+  }, {})
+
   Webcaster.settings = new Webcaster.Model.Settings({
     uri:          "ws://source:hackme@localhost:8080/mount"
     bitrate:      128
@@ -17,6 +21,7 @@ $ ->
     passThrough:  false
   }, {
     mixer: Webcaster.mixer
+    events: Webcaster.events
   })
 
   Webcaster.node = new Webcaster.Node
@@ -29,6 +34,10 @@ $ ->
         node  : Webcaster.node
         el    : $("div.settings")
 
+      watch: new Webcaster.View.Watch
+        model: Webcaster.events
+        el   : $("div.timer-view")
+
       mixer: new Webcaster.View.Mixer
         model : Webcaster.mixer
         el    : $("div.mixer")
@@ -40,6 +49,7 @@ $ ->
         }, {
           mixer: Webcaster.mixer
           node:  Webcaster.node
+          events: Webcaster.events
         })
         el: $("div.microphone")
 
@@ -58,6 +68,7 @@ $ ->
         }, {
           mixer : Webcaster.mixer
           node  : Webcaster.node
+          events: Webcaster.events
         })
         el : $("div.playlist-left")
 
@@ -76,6 +87,7 @@ $ ->
         }, {
           mixer : Webcaster.mixer
           node  : Webcaster.node
+          events: Webcaster.events
         })
         el : $("div.playlist-right")
 
