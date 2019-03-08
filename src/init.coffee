@@ -7,7 +7,7 @@ $ ->
   }, {})
 
   Webcaster.settings = new Webcaster.Model.Settings({
-    uri:          "ws://source:hackme@83.212.112.23:8084/mount"
+    uri:          "ws://source:hackme@localhost:8083/mount"
     bitrate:      128
     bitrates:     [ 8, 16, 24, 32, 40, 48, 56,
                     64, 80, 96, 112, 128, 144,
